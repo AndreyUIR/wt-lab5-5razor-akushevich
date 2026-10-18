@@ -1,0 +1,48 @@
+@page
+@model EditModel
+@{
+    ViewData["Title"] = "Изменение счёта";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="mb-4">Изменение счёта</h2>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Account.Id" />
+                        <input type="hidden" asp-for="Account.Balance" />
+
+                        <div class="mb-3">
+                            <label asp-for="Account.AccountNumber" class="form-label">Номер счёта</label>
+                            <input asp-for="Account.AccountNumber" class="form-control" readonly />
+                            <span asp-validation-for="Account.AccountNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Account.OwnerName" class="form-label">Владелец</label>
+                            <input asp-for="Account.OwnerName" class="form-control" />
+                            <span asp-validation-for="Account.OwnerName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check form-switch mb-4">
+                            <input asp-for="Account.IsActive" class="form-check-input" />
+                            <label asp-for="Account.IsActive" class="form-check-label">Счёт активен</label>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                            <a asp-page="./Index" class="btn btn-secondary">Отмена</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
