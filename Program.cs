@@ -23,4 +23,15 @@ app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
 
-app.Run();
+var port = Environment.GetEnvironmentVariable("PORT");
+
+if (port != null)
+{
+    // Render / Docker: слушаем все интерфейсы на заданном порту
+    app.Run($"http://0.0.0.0:{port}");
+}
+else
+{
+    // Локальный dotnet run: настройки из launchSettings.json (https работает)
+    app.Run();
+}
